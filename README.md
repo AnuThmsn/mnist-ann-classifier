@@ -1,62 +1,40 @@
 # MNIST Handwritten Digit Classifier (ANN)
 
-A simple Artificial Neural Network (ANN) built using TensorFlow and Keras to classify the MNIST dataset of handwritten digits. This project is a foundational example of building, training, and evaluating a neural network for image classification.
+This project is a simple Artificial Neural Network (ANN) built using TensorFlow and Keras to classify the famous MNIST dataset of handwritten digits.
 
-[Image of the MNIST dataset examples]
+The model demonstrates a basic implementation of a sequential neural network, achieving an accuracy of **97.48%** on the test dataset.
+
+
 
 ---
 
-## Project Overview
+## Project Workflow
 
-The goal of this project is to build a simple neural network that can accurately recognize handwritten digits from 0 to 9. It uses the classic MNIST dataset, which contains 60,000 training images and 10,000 testing images, each 28x28 pixels.
+1.  **Load Data:** The MNIST dataset (60,000 training images, 10,000 test images) is loaded directly from `keras.datasets`.
+2.  **Preprocess Data:** Pixel values for all images (both training and test) are normalized by dividing by 255. This scales all pixel values from the 0-255 range to a 0-1 range, which helps the model train more effectively.
+3.  **Build Model:** A `Sequential` Keras model is built.
+4.  **Compile Model:** The model is compiled using the `Adam` optimizer and `sparse_categorical_crossentropy` as the loss function.
+5.  **Train Model:** The model is trained on the training data for 10 epochs, with 20% of the data used for validation.
+6.  **Evaluate Model:** The trained model's accuracy is measured on the unseen test data.
+7.  **Visualize Results:** Training & validation loss and accuracy are plotted using Matplotlib.
 
 ---
 
 ## 🛠️ Technologies Used
 
 * **Python**
-* **TensorFlow** & **Keras** (for building and training the model)
-* **NumPy** (for numerical operations)
-* **Matplotlib** (for plotting training results)
+* **TensorFlow**
+* **Keras** (as `tensorflow.keras`)
+* **Scikit-learn** (for `accuracy_score`)
+* **Matplotlib** (for plotting)
+* **Jupyter Notebook / Google Colab**
 
 ---
 
-## 🚀 Getting Started
+## 🧠 Model Architecture
 
-To get a local copy up and running, follow these steps.
+A simple sequential ANN with one hidden layer was used.
 
-### Prerequisites
-
-You will need Python 3.x and pip installed on your machine.
-
-### Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/YOUR-USERNAME/mnist-ann-classifier.git](https://github.com/YOUR-USERNAME/mnist-ann-classifier.git)
-    cd mnist-ann-classifier
-    ```
-2.  **Create and activate a virtual environment (recommended):**
-    ```bash
-    # On macOS/Linux
-    python3 -m venv venv
-    source venv/bin/activate
-    
-    # On Windows
-    python -m venv venv
-    .\venv\Scripts\activate
-    ```
-3.  **Install the required packages:**
-    *(You should create this file by running `pip freeze > requirements.txt`)*
-    ```bash
-    pip install -r requirements.txt
-    ```
-
----
-
-## 🏃 Usage
-
-To train and evaluate the model, simply run the main script:
-
-```bash
-python main.py
+* **`Flatten` Layer:** Converts the 28x28 pixel images into a 1D array of 784 pixels.
+* **`Dense` (Hidden) Layer:** A fully-connected layer with **128 neurons** and a `relu` activation function.
+* **`Dense` (Output) Layer:** A fully-connected output layer with **10 neurons** (one for each digit 0-9) and a `softmax` activation function to provide class probabilities.
